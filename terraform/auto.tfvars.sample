@@ -1,0 +1,3 @@
+# Rename this file to ".auto.tfvars" (note the leading .) and fill it in
+aws_access_key_id = "AAAAAAAAAAAAAAAAAAAA"
+aws_secret_access_key = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
