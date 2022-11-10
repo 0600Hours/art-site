@@ -108,7 +108,7 @@ resource "aws_route53_record" "validation-cname" {
 resource "aws_acm_certificate_validation" "artsite_cert" {
   provider                = aws.us-east-1
   certificate_arn         = aws_acm_certificate.artsite_cert.arn
-  validation_record_fqdns = [local.external_domain]
+  validation_record_fqdns = aws_acm_certificate.artsite_cert.domain_validation_options.*.resource_record_name
 }
 
 resource "aws_cloudfront_distribution" "s3_distribution" {
@@ -191,12 +191,28 @@ resource "aws_s3_bucket_policy" "allow_cloudfront" {
   policy = data.aws_iam_policy_document.allow_cloudfront.json
 }
 
-resource "aws_route53_record" "root-cname" {
+resource "aws_route53_record" "root-a" {
   zone_id = aws_route53_zone.primary.zone_id
   name    = local.external_domain
-  type    = "CNAME"
-  ttl     = local.default_dns_ttl
-  records = [aws_cloudfront_distribution.s3_distribution.domain_name]
+  type    = "A"
+
+  alias {
+    name                   = aws_cloudfront_distribution.s3_distribution.domain_name
+    zone_id                = aws_cloudfront_distribution.s3_distribution.hosted_zone_id
+    evaluate_target_health = true
+  }
+}
+
+resource "aws_route53_record" "root-aaaa" {
+  zone_id = aws_route53_zone.primary.zone_id
+  name    = local.external_domain
+  type    = "AAAA"
+
+  alias {
+    name                   = aws_cloudfront_distribution.s3_distribution.domain_name
+    zone_id                = aws_cloudfront_distribution.s3_distribution.hosted_zone_id
+    evaluate_target_health = true
+  }
 }
 
 output "dns_nameservers" {
