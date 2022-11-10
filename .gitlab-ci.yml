@@ -1,31 +1,29 @@
 stages:
-    - build
-    - deploy
+  - build
+  - deploy
 build:
-    stage: build
-    image: "node:18.12.1-alpine3.16"
-    variables:
-      ESLINT_NO_DEV_ERRORS: "true"
-    script:
-        - echo "Building deploy package"
-        - npm install
-        - npm run build
-        - echo "Build successful"
-    artifacts:
-        expire_in: 1 month
-        paths:
-            - build
+  stage: build
+  image: "node:18.12.1-alpine3.16"
+  script:
+    - export "ESLINT_NO_DEV_ERRORS=true"
+    - echo "Building deploy package"
+    - npm install
+    - npm run build
+    - echo "Build successful"
+  artifacts:
+    expire_in: 1 month
+    paths:
+      - build
 
 deploy:
-    stage: deploy
-    dependencies:
-        - build
-    image: "amazon/aws-cli:2.8.11"
-    variables:
-      AWS_DEFAULT_REGION: us-west-1
-    script:
-        - ls build/
-        - aws s3 sync --delete build s3://artsite-site/
-    only:
-        refs:
-            - main
+  stage: deploy
+  dependencies:
+    - build
+  image: "amazon/aws-cli:2.8.11"
+  script:
+    - export "AWS_DEFAULT_REGION=us-west-1"
+    - ls build/
+    - aws s3 sync --delete build s3://artsite-site/
+  only:
+    refs:
+      - main
