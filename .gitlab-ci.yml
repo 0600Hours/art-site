@@ -20,9 +20,7 @@ deploy:
     - build
   image: "amazon/aws-cli:2.8.11"
   script:
-    - export "AWS_DEFAULT_REGION=us-west-1"
-    - ls build/
-    - aws s3 sync --delete build s3://artsite-site/
+    - s3 sync --delete build s3://artsite-site/
   only:
     refs:
       - main
