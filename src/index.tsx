@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createHashRouter, RouterProvider } from 'react-router-dom';
 import Page from './components/Page';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
@@ -19,7 +19,7 @@ export const navMap = [
     name: 'Contact Info',
   }
 ]
-const router = createBrowserRouter(navMap)
+const router = createHashRouter(navMap)
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
