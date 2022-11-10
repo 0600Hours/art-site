@@ -26,9 +26,10 @@ variable "aws_secret_access_key" {
 }
 
 locals {
-  s3_origin_id = "artsite_site_s3_origin"
-  # TODO(keea): Put in the real domain at some point
-  external_domain = "artsite.keea.dog"
+  s3_origin_id    = "artsite_site_s3_origin"
+  external_domain = "saltmalkin.com"
+  // TODO(keea): Up this once everything is tested and working well
+  default_dns_ttl = 60
 }
 
 provider "aws" {
@@ -41,6 +42,18 @@ provider "aws" {
   region     = "us-east-1"
   access_key = var.aws_access_key_id
   secret_key = var.aws_secret_access_key
+}
+
+resource "aws_route53_zone" "primary" {
+  name = local.external_domain
+}
+
+resource "aws_route53_record" "root-caa" {
+  zone_id = aws_route53_zone.primary.zone_id
+  name    = local.external_domain
+  type    = "CAA"
+  ttl     = local.default_dns_ttl
+  records = ["0 issue \"amazon.com\""]
 }
 
 resource "aws_s3_bucket" "artsite_site" {
@@ -74,7 +87,26 @@ resource "aws_acm_certificate" "artsite_cert" {
   }
 }
 
+resource "aws_route53_record" "validation-cname" {
+  for_each = {
+    for dvo in aws_acm_certificate.artsite_cert.domain_validation_options : dvo.domain_name => {
+      name   = dvo.resource_record_name
+      record = dvo.resource_record_value
+      type   = dvo.resource_record_type
+    }
+  }
+
+  allow_overwrite = true
+  name            = each.value.name
+  records         = [each.value.record]
+  // This TTL kept low intentionally as its only used for issuance
+  ttl     = 60
+  type    = each.value.type
+  zone_id = aws_route53_zone.primary.zone_id
+}
+
 resource "aws_acm_certificate_validation" "artsite_cert" {
+  provider                = aws.us-east-1
   certificate_arn         = aws_acm_certificate.artsite_cert.arn
   validation_record_fqdns = [local.external_domain]
 }
@@ -120,7 +152,7 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
   }
 
   viewer_certificate {
-    acm_certificate_arn      = aws_acm_certificate.artsite_cert.arn
+    acm_certificate_arn      = aws_acm_certificate_validation.artsite_cert.certificate_arn
     minimum_protocol_version = "TLSv1.2_2021"
     ssl_support_method       = "sni-only"
   }
@@ -157,6 +189,18 @@ data "aws_iam_policy_document" "allow_cloudfront" {
 resource "aws_s3_bucket_policy" "allow_cloudfront" {
   bucket = aws_s3_bucket.artsite_site.id
   policy = data.aws_iam_policy_document.allow_cloudfront.json
+}
+
+resource "aws_route53_record" "root-cname" {
+  zone_id = aws_route53_zone.primary.zone_id
+  name    = local.external_domain
+  type    = "CNAME"
+  ttl     = local.default_dns_ttl
+  records = [aws_cloudfront_distribution.s3_distribution.domain_name]
+}
+
+output "dns_nameservers" {
+  value = aws_route53_zone.primary.name_servers
 }
 
 output "dns_cert_validation" {
