@@ -25,7 +25,7 @@ export default function Contact() {
                 I am a freelance illustrator who loves to paint cute animals with vibrant colors. I prefer to work with fantasy and magical realism themes. 
             </p>
             <p className='center'>
-                I graduated with a BFA and a minor in Biology from the University of Denver with the intent of pursuing scientific illustration. I wound up in the video game industry instead, with a focus on concept art and asset work.
+                I graduated with a BFA in Painting with a focus on oils and a minor in Biology from the University of Denver, with the intent of pursuing scientific illustration. Over time, my work has led me to the video game industry instead, with a focus on concept art and assets.
             </p>
             <p className='center'>
             I specialize in both traditional and digital illustration and many stages of the gamedev pipeline. Specific programs with which I have experience include Photoshop, Illustrator, Spine, and Animate. Traditional media include inks, watercolor, and oil.
