@@ -14,6 +14,7 @@ import img11 from '../img/11.png';
 import img12 from '../img/12.png';
 import img13 from '../img/13.png';
 import img14 from '../img/14.png';
+import img15 from '../img/15.png';
 import { ReactNode } from "react";
 
 const IMAGE_FOLDER = '../img';
@@ -84,6 +85,10 @@ const images = [
         id: 14,
         src: img14,
     },
+    {
+        id: 15,
+        src: img15,
+    }
 ]
 
 function onClickItem(index: number, item: ReactNode,) {
