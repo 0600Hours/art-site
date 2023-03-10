@@ -15,6 +15,8 @@ import img12 from '../img/12.png';
 import img13 from '../img/13.png';
 import img14 from '../img/14.png';
 import img15 from '../img/15.png';
+import img16 from '../img/16.png';
+import img17 from '../img/17.png';
 import { ReactNode } from "react";
 
 const IMAGE_FOLDER = '../img';
@@ -32,6 +34,14 @@ const images = [
     {
         id: 1,
         src: img1,
+    },
+    {
+        id: 16,
+        src: img16,
+    },
+    {
+        id: 17,
+        src: img17,
     },
     {
         id: 2,
