@@ -19,7 +19,7 @@ export default function SingleImage() {
     }
 
     const renderNext = () => {
-        if (image && image.id < images.length - 1) {
+        if (image && image.id < images.length) {
             return <Link to={`/image/${image.id + 1}`}>
                 Next
             </Link>
