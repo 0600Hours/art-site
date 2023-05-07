@@ -3,7 +3,7 @@ import NavBar from "./NavBar";
 
 interface PageProps {
     content: ReactElement
-    selected?: string;
+    selected: string;
 }
 
 export default function Page(props: PageProps) {

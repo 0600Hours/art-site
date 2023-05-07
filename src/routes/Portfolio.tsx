@@ -1,5 +1,4 @@
 import { MouseEventHandler, useEffect, useMemo, useState } from "react";
-import { Link } from "react-router-dom";
 import { images } from "../img/all";
 
 const PAGE_PADDING = 20;
@@ -35,6 +34,10 @@ export default function Portfolio() {
         return chunks;
     }, [columnCount])
 
+    const onImageClick = (src: string) => {
+        window.open(src, '_blank', 'noopener,noreferrer')
+    }
+
     return (
         <div
             id="portfolio"
@@ -52,16 +55,17 @@ export default function Portfolio() {
                                 height: imageSize,
                             }}
                         >
-                            <Link to={`/image/${image.id}`}>
-                                <img
-                                    className="portfolio-image"
-                                    style={{
-                                        width: imageSize,
-                                        height: imageSize,
-                                    }}
-                                    src={image.src}
-                                />
-                            </Link>
+                            <img
+                                className="portfolio-image"
+                                style={{
+                                    width: imageSize,
+                                    height: imageSize,
+                                }}
+                                src={image}
+                                onClick={() => {
+                                    onImageClick(image)
+                                }}
+                            />
                         </div>
                     ))}
                 </div>

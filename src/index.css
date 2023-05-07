@@ -109,28 +109,5 @@ p.center{
 
 #portfolio .portfolio-image:hover {
   opacity: 70%;
-}
-
-/* single image styles */
-
-.singleimage-nav a,.link-disabled{
-  padding: 5px;
-  font-size: 20px;
-}
-
-.singleimage-nav a {
-  color: black;
-  text-decoration: none;
-}
-
-.singleimage-nav .link-disabled {
-  color: #AAA;
-}
-
-.singleimage-nav .singleimage-nav-back {
-  font-weight: bold;
-}
-
-.no-image {
-  padding: 200px 0;
+  cursor: pointer;
 }
