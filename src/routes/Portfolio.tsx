@@ -1,75 +1,134 @@
-import { MouseEventHandler, useEffect, useMemo, useState } from "react";
-import { images } from "../img/all";
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // carousel css helpers
+import { Carousel } from 'react-responsive-carousel';
+import img1 from '../img/1.png'; // i know, i know.
+import img2 from '../img/2.png';
+import img3 from '../img/3.png';
+import img4 from '../img/4.png';
+import img5 from '../img/5.png';
+import img6 from '../img/6.png';
+import img7 from '../img/7.png';
+import img8 from '../img/8.png';
+import img9 from '../img/9.png';
+import img10 from '../img/10.png';
+import img11 from '../img/11.png';
+import img12 from '../img/12.png';
+import img13 from '../img/13.png';
+import img14 from '../img/14.png';
+import img15 from '../img/15.png';
+import img16 from '../img/16.png';
+import img17 from '../img/17.png';
+import img18 from '../img/18.png';
+import img19 from '../img/19.jpg';
+import { ReactNode } from "react";
 
-const PAGE_PADDING = 20;
-const IMAGE_PADDING = 5;
-const IMAGE_MIN_SIZE = 420;
-const MAX_COLUMNS = 5;
-const PORTFOLIO_MAX_WIDTH = (MAX_COLUMNS + 1) * (IMAGE_MIN_SIZE + 2 * IMAGE_PADDING)
+const IMAGE_FOLDER = '../img';
+const IMAGE_COUNT = 14;
+
+// TODO: use webpack to dynamically import the whole folder of images
+// const images = [...Array(IMAGE_COUNT).keys()].map(i => {
+//     return {
+//         id: i + 1,
+//         src: `${IMAGE_FOLDER}/${i + 1}.png`
+//     }
+// })
+
+const images = [
+    {
+        id: 1,
+        src: img1,
+    },
+    {
+        id: 16,
+        src: img16,
+    },
+    {
+        id: 17,
+        src: img17,
+    },
+    {
+        id: 18,
+        src: img18,
+    },
+    {
+        id: 2,
+        src: img2,
+    },
+    {
+        id: 3,
+        src: img3,
+    },
+    {
+        id: 4,
+        src: img4,
+    },
+    {
+        id: 5,
+        src: img5,
+    },
+    {
+        id: 19,
+        src: img19,
+    },
+    {
+        id: 6,
+        src: img6,
+    },
+    {
+        id: 7,
+        src: img7,
+    },
+    {
+        id: 8,
+        src: img8,
+    },
+    {
+        id: 9,
+        src: img9,
+    },
+    {
+        id: 10,
+        src: img10,
+    },
+    {
+        id: 11,
+        src: img11,
+    },
+    {
+        id: 12,
+        src: img12,
+    },
+    {
+        id: 14,
+        src: img14,
+    },
+    {
+        id: 15,
+        src: img15,
+    }
+]
+
+function onClickItem(index: number, item: ReactNode,) {
+    window.open(images[index].src, '_blank', 'noopener,noreferrer')
+}
 
 export default function Portfolio() {
-    const [windowWidth, setWindowWidth] = useState(document.documentElement.clientWidth)
-
-    useEffect(() => {
-        function onResize() {
-            setWindowWidth(document.documentElement.clientWidth);
-        }
-
-        window.addEventListener('resize', onResize);
-    });
-
-    const columnCount = Math.min(
-        MAX_COLUMNS,
-        Math.floor(
-            (windowWidth - (PAGE_PADDING * 2)) / (IMAGE_MIN_SIZE + (IMAGE_PADDING * 2))
-        )
-    );
-    const imageSize = ((Math.min(windowWidth, PORTFOLIO_MAX_WIDTH) - (PAGE_PADDING * 2)) / columnCount) - IMAGE_PADDING * 2;
-
-    const chunkedImages = useMemo(() => {
-        const chunks = [];
-        for (let i = 0; i < images.length; i += columnCount) {
-            chunks.push(images.slice(i, i + columnCount))
-        }
-        return chunks;
-    }, [columnCount])
-
-    const onImageClick = (src: string) => {
-        window.open(src, '_blank', 'noopener,noreferrer')
-    }
-
+    console.log(images)
     return (
-        <div
-            id="portfolio"
-            style={{
-                maxWidth: PORTFOLIO_MAX_WIDTH,
-            }}
-        >
-            {chunkedImages.map(chunk => (
-                <div className="portfolio-row">
-                    {chunk.map(image => (
-                        <div
-                            className="portfolio-image-background"
-                            style={{
-                                width: imageSize,
-                                height: imageSize,
-                            }}
-                        >
-                            <img
-                                className="portfolio-image"
-                                style={{
-                                    width: imageSize,
-                                    height: imageSize,
-                                }}
-                                src={image}
-                                onClick={() => {
-                                    onImageClick(image)
-                                }}
-                            />
+        <div id='portfolio'>
+            <Carousel
+                autoFocus={true}
+                autoPlay={false}
+                infiniteLoop={true}
+                onClickItem={onClickItem}
+            >
+                {images.map(img => {
+                    return (
+                        <div className='image-wrapper' key={img.id}>
+                            <img src={img.src} className='portfolio-image' />
                         </div>
-                    ))}
-                </div>
-            ))}
+                    )
+                })}
+            </Carousel>
         </div>
-    );
+    )
 }

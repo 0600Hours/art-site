@@ -89,25 +89,33 @@ p.center{
 
 /* image gallery styles */
 
-#portfolio {
-  padding: 0 20px;
+#portfolio .thumb {
+  height: 45px;
+  max-width: 80px;
+  width: auto!important;
 }
 
-#portfolio .portfolio-row {
+#portfolio .slide .portfolio-image {
+  width: 100%;
+  height: 100%;
+  max-height: 74vh;
+  object-fit: scale-down; 
+}
+
+#portfolio .slide .image-wrapper {
+  width: auto;
+  max-height: 74vh;
+}
+
+#portfolio .slider-wrapper {
+  background-color: #222;
+  border-color: #222;
+  border-style: solid;
+  border-width: 10px 0;
+}
+
+/* #portfolio .thumbs {
   display: flex;
   flex-direction: row;
-}
-
-#portfolio .portfolio-image-background {
-  margin: 5px;
-  background-color: black;
-}
-
-#portfolio .portfolio-image {
-  object-fit: cover;
-}
-
-#portfolio .portfolio-image:hover {
-  opacity: 70%;
-  cursor: pointer;
-}
+  justify-content: center;
+} */
