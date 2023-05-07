@@ -6,6 +6,7 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import Contact from './routes/Contact';
 import Portfolio from './routes/Portfolio';
+import SingleImage from './routes/SingleImage';
 
 export const navMap = [
   {
@@ -17,9 +18,14 @@ export const navMap = [
     path: '/contact',
     element: <Page content={<Contact />} selected='Contact Info'/>,
     name: 'Contact Info',
+  },
+  {
+    path: '/image/:id',
+    element: <Page content={<SingleImage />}/>,
+    name: 'Contact Info',
   }
 ]
-const router = createHashRouter(navMap)
+const router = createHashRouter(navMap);
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
