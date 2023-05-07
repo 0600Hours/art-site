@@ -20,7 +20,7 @@ export default function Page(props: PageProps) {
                 {props.content}
             </div>
             <hr />
-            <p className='center'>&#169; 2022 Alaina Sang</p>
+            <p className='center'>&#169; 2023 Alaina Sang</p>
         </div>
     )
 }
