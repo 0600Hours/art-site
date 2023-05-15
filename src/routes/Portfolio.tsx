@@ -1,31 +1,33 @@
-import { MouseEventHandler, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { images } from "../img/all";
 
 const PAGE_PADDING = 20;
-const IMAGE_PADDING = 5;
+const IMAGE_PADDING = 10;
 const IMAGE_MIN_SIZE = 420;
-const MAX_COLUMNS = 5;
+const MAX_COLUMNS = 3;
 const PORTFOLIO_MAX_WIDTH = (MAX_COLUMNS + 1) * (IMAGE_MIN_SIZE + 2 * IMAGE_PADDING)
 
 export default function Portfolio() {
-    const [windowWidth, setWindowWidth] = useState(document.documentElement.clientWidth)
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
     useEffect(() => {
         function onResize() {
-            setWindowWidth(document.documentElement.clientWidth);
+            setWindowWidth(window.innerWidth);
         }
 
         window.addEventListener('resize', onResize);
     });
 
-    const columnCount = Math.min(
-        MAX_COLUMNS,
-        Math.floor(
+    const columnCount = useMemo(() => {
+        const count = Math.min(
+            MAX_COLUMNS,
             (windowWidth - (PAGE_PADDING * 2)) / (IMAGE_MIN_SIZE + (IMAGE_PADDING * 2))
-        )
-    );
-    const imageSize = ((Math.min(windowWidth, PORTFOLIO_MAX_WIDTH) - (PAGE_PADDING * 2)) / columnCount) - IMAGE_PADDING * 2;
+        );
+        console.log(count);
+        return parseInt(count.toFixed(0));
+    }, [windowWidth]);
+    const imageSize = ((Math.min(windowWidth, PORTFOLIO_MAX_WIDTH) - (PAGE_PADDING * 2)) / columnCount) - IMAGE_PADDING * 2 * columnCount;
 
     const chunkedImages = useMemo(() => {
         const chunks = [];

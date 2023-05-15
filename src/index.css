@@ -17,6 +17,14 @@ code {
     monospace;
 }
 
+#page-content {
+  max-width: 100vw;
+}
+
+#contact {
+  padding: 0 30px;
+}
+
 .center {
   display:flex;
   flex-direction: column;
@@ -50,6 +58,17 @@ p.center{
 #title h3 {
   padding: 14px 5px 0 0;
   font-size: 24px;
+}
+
+@media (max-width: 450px) {
+  #title h1 {
+    font-size: 60px;
+  }
+  
+  #title h3 {
+    padding: 14px 5px 0 0;
+    font-size: 20px;
+  }
 }
 
 /* nav styles */
@@ -99,7 +118,7 @@ p.center{
 }
 
 #portfolio .portfolio-image-background {
-  margin: 5px;
+  margin: 10px;
   background-color: black;
 }
 
