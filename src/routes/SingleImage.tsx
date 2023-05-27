@@ -43,6 +43,8 @@ export default function SingleImage() {
         )
     }
 
+    window.scrollTo(0, 0);
+
     return (
         <div className="center">
             {renderNav()}
