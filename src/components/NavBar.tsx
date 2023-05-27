@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 
 interface NavBarProps {
-    selected: string;
+    selected?: string;
 }
 
 export default function NavBar(props: NavBarProps) {
