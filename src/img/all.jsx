@@ -14,13 +14,24 @@ import i14 from '../img/14.png';
 import i15 from '../img/15.png';
 import i16 from '../img/16.png';
 import i17 from '../img/17.png';
-import i18 from '../img/18.jpg';
 import i19 from '../img/19.png';
 import i20 from '../img/20.png';
+import i21 from '../img/21.png';
+import i22 from '../img/22.png';
+import i23 from '../img/23.png';
+import i24 from '../img/24.png';
+import i25 from '../img/25.jpg';
+import i26 from '../img/26.png';
 
 const imageArray = [
-  i00, i15, i16, i17, i05, i01, i02, i03, i19, i04,
-  i18, i06, i07, i08, i09, i20, i11, i13, i14,
+  i00, i15, i16,
+  i17, i21, i22,
+  i23, i24, i25,
+  i05, i01, i02,
+  i03, i19, i04,
+  i06, i07, i08,
+  i09, i20, i26,
+  i11, i13, i14,
 ];
 
 export const images = imageArray.map((image, index) => { return {src: image, id: index }});
