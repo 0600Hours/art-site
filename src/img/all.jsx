@@ -27,10 +27,10 @@ import i27 from '../img/27.jpg';
 const imageArray = [
   i00, i15, i16,
   i27, i17, i21,
-  i22, i23, i24,
+  i22, i23, i06,
   i25, i05, i01,
   i02, i03, i19,
-  i04, i06, i07,
+  i04, i24, i07,
   i08, i09, i20,
   i26, i11, i13,
   i14,
