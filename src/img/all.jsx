@@ -21,7 +21,6 @@ import i22 from '../img/22.png';
 import i23 from '../img/23.png';
 import i24 from '../img/24.png';
 import i25 from '../img/25.jpg';
-import i26 from '../img/26.png';
 import i27 from '../img/27.jpg';
 
 const imageArray = [
