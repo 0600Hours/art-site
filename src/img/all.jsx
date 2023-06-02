@@ -32,8 +32,7 @@ const imageArray = [
   i02, i03, i19,
   i04, i24, i07,
   i08, i09, i20,
-  i26, i11, i13,
-  i14,
+  i11, i13, i14,
 ];
 
 export const images = imageArray.map((image, index) => { return {src: image, id: index }});
