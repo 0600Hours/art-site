@@ -22,16 +22,17 @@ import i23 from '../img/23.png';
 import i24 from '../img/24.png';
 import i25 from '../img/25.jpg';
 import i27 from '../img/27.jpg';
+import i28 from '../img/28.jpg';
 
 const imageArray = [
-  i00, i15, i16,
+  i00, i28, i16,
   i27, i17, i21,
-  i22, i23, i06,
+  i15, i23, i06,
   i25, i05, i01,
   i02, i03, i19,
   i04, i24, i07,
   i08, i09, i20,
-  i11, i13, i14,
+  i22, i13, i14,
 ];
 
 export const images = imageArray.map((image, index) => { return {src: image, id: index }});
