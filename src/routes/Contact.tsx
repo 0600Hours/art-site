@@ -22,13 +22,13 @@ export default function Contact() {
             <p className="center">
                 Hello! My name is Alaina Sang.
                 <br />
-                I am a freelance illustrator who loves to paint cute animals with vibrant colors. I prefer to work with fantasy and magical realism themes. 
+                I am a queer Asian illustrator living in Berkeley, CA with my partner and my two cats. I have a primary interest in fantasy or animal-related themes. I also have an obsession with werewolves.
             </p>
             <p className="center">
-                I graduated with a BFA in Painting with a focus on oils and a minor in Biology from the University of Denver, with the intent of pursuing scientific illustration. Over time, my work has led me to the video game industry instead, with a focus on concept art and assets.
+                I graduated with a BFA in Painting with a focus on oils, and a minor in Biology, from the University of Denver with the intent of pursuing scientific illustration. Over time, my work led me to the video game industry instead.
             </p>
             <p className="center">
-            I specialize in both traditional and digital illustration and many stages of the gamedev pipeline. Specific programs with which I have experience include Photoshop, Illustrator, Spine, and Animate. Traditional media include inks, watercolor, and oil.
+                These days, I am primarily focused on my freelance endeavors. Most of my work is geared towards personal projects like making prints, shirts, and merchandise. I am still very much open for commercial work and would love to work with you!
             </p>
             <br />
             <h2>Socials</h2>
