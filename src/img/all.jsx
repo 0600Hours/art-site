@@ -8,7 +8,6 @@ import i06 from '../img/06.png';
 import i07 from '../img/07.png';
 import i08 from '../img/08.png';
 import i09 from '../img/09.png';
-import i11 from '../img/11.png';
 import i13 from '../img/13.png';
 import i14 from '../img/14.png';
 import i15 from '../img/15.png';
@@ -23,6 +22,8 @@ import i24 from '../img/24.png';
 import i25 from '../img/25.jpg';
 import i27 from '../img/27.jpg';
 import i28 from '../img/28.jpg';
+import i29 from '../img/29.png';
+import i30 from '../img/30.png';
 
 const imageArray = [
   i00, i28, i16,
@@ -33,6 +34,7 @@ const imageArray = [
   i04, i24, i07,
   i08, i09, i20,
   i22, i13, i14,
+  i29, i30,
 ];
 
 export const images = imageArray.map((image, index) => { return {src: image, id: index }});
