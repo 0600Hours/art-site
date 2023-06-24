@@ -16,6 +16,13 @@ export default function NavBar(props: NavBarProps) {
                 </Link>
             </li>
             <li>
+                <Link to='/convention'>
+                    <div className={props.selected === 'Convention' ? 'nav-item selected': 'nav-item'}>
+                        Conventions
+                    </div>
+                </Link>
+            </li>
+            <li>
                 <a href='https://www.saltmalk.in/'>
                     <div className='nav-item'>
                         Shop

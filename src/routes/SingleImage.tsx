@@ -1,9 +1,17 @@
 import { Link, useParams } from "react-router-dom";
-import { images } from "../img/all";
 
-export default function SingleImage() {
+interface SingleImageProps {
+    images: any,
+    folder: string,
+}
+
+function capitalize(s: string) {
+    return s && s[0].toUpperCase() + s.slice(1);
+}
+
+export default function SingleImage({ images, folder }: SingleImageProps) {
     const { id } = useParams();
-    const image = images.find(img => img.id.toString() == id);
+    const image = images.find((img: { id: { toString: () => any; }; }) => img.id.toString() == id);
 
     const content = image
         ? <img src={image.src} />
@@ -33,9 +41,9 @@ export default function SingleImage() {
                 {renderPrev()}
                 /
                 <Link
-                    to='/'
+                    to={`/${folder == 'portfolio' ? '' : folder}`}
                     className="singleimage-nav-back">
-                    Back to Portfolio
+                    Back to {capitalize(folder)}
                 </Link>
                 /
                 {renderNext()}

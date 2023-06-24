@@ -1,27 +1,76 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { createHashRouter, RouterProvider } from 'react-router-dom';
+import { createHashRouter, RouterProvider, useParams } from 'react-router-dom';
 import Page from './components/Page';
 import './index.css';
 import Contact from './routes/Contact';
-import Portfolio from './routes/Portfolio';
+import Gallery from './routes/Gallery';
 import SingleImage from './routes/SingleImage';
+import { portfolioImages } from "./img/portfolio/all";
+import { conventionImages } from "./img/convention/all";
 
 export const navMap = [
   {
     path: '/',
-    element: <Page content={<Portfolio />} selected='Portfolio'/>,
+    element: 
+      <Page
+        selected='Portfolio'
+        content={
+          <Gallery
+            images={portfolioImages}
+            folder='portfolio'
+          />
+        }
+      />,
     name: 'Portfolio',
   },
   {
+    path: '/convention',
+    element:
+      <Page
+        selected='Convention'
+        content={
+          <Gallery
+            images={conventionImages}
+            folder='convention'
+          />
+        }
+      />,
+    name: 'Convention',
+  },
+  {
     path: '/contact',
-    element: <Page content={<Contact />} selected='Contact Info'/>,
+    element:
+      <Page
+        selected='Contact Info'
+        content={<Contact />}
+      />,
     name: 'Contact Info',
   },
   {
-    path: '/image/:id',
-    element: <Page content={<SingleImage />}/>,
-    name: 'Contact Info',
+    path: 'portfolio/image/:id',
+    element: <Page
+      content={
+        <SingleImage
+          images={portfolioImages}
+          folder='portfolio'
+        />
+      }
+    />,
+    name: 'Image',
+  },
+  {
+    path: 'convention/image/:id',
+    element:
+      <Page
+        content={
+          <SingleImage
+          images={conventionImages}
+          folder='convention'
+        />
+      }
+    />,
+    name: 'Image',
   }
 ]
 const router = createHashRouter(navMap);

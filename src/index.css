@@ -108,26 +108,26 @@ p.center{
 
 /* image gallery styles */
 
-#portfolio {
+#gallery {
   padding: 0 20px;
 }
 
-#portfolio .portfolio-row {
+#gallery .gallery-row {
   display: flex;
   flex-direction: row;
 }
 
-#portfolio .portfolio-image-background {
+#gallery .gallery-image-background {
   margin: 10px;
   background-color: black;
 }
 
-#portfolio .portfolio-image {
+#gallery .gallery-image {
   object-fit: cover;
 }
 
-#portfolio .portfolio-image:hover {
-  opacity: 70%;
+#gallery .gallery-image:hover {
+  opacity: 80%;
 }
 
 /* single image styles */
